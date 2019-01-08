@@ -1,13 +1,15 @@
 #!/bin/bash
 
-read -p "输入10进制的数字,将会转为16进制:" decimalism
+read -p "输入10进制的QQ分享的AppId数字,将会转为16进制的结果，并且带上QQ为前缀:" decimalism
 
 hexadecimal=`echo 'ibase=10;obase=16;'$decimalism''|bc`
 length=${#hexadecimal}
-
-if [ `echo "${length} > 8"|bc` ]; then
+echo "${decimalism}转换为16进制后的长度为:${length}"
+min="8"
+echo "QQ分享的AppId转换后的16进制数字的长度最小为:${min}"
+if [ $length -le $min ]; then
 	
-	deviation=$[8-length]
+	deviation=$[$min-$length]
 	echo "需要补0的个数为:${deviation}"
 	cover="0"
 	for i in $(seq $deviation); do
