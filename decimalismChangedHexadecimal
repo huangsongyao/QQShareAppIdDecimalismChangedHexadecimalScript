@@ -1,0 +1,20 @@
+#!/bin/bash
+
+read -p "输入10进制的数字,将会转为16进制:" decimalism
+
+hexadecimal=`echo 'ibase=10;obase=16;'$decimalism''|bc`
+length=${#hexadecimal}
+
+if [ `echo "${length} > 8"|bc` ]; then
+	
+	deviation=$[8-length]
+	echo "需要补0的个数为:${deviation}"
+	cover="0"
+	for i in $(seq $deviation); do
+		hexadecimal=$cover$hexadecimal
+	done
+fi
+echo "转换结果为:QQ${hexadecimal}"
+echo "changed completed!"
+
+exit 0
